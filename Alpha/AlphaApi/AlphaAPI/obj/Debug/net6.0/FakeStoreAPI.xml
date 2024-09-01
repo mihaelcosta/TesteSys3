@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FakeStoreAPI</name>
+    </assembly>
+    <members>
+        <member name="M:FakeStoreAPI.Controllers.ProdutoController.BuscarProdutos(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Busca produtos com base nos parâmetros fornecidos.
+            </summary>
+            <remarks>
+            Este endpoint permite buscar produtos por nome ou código de barras. É possível realizar paginação usando os parâmetros 'skip' e 'take'.
+            </remarks>
+            <param name="nome">Nome parcial ou completo do produto (opcional).</param>
+            <param name="codigo">Código de barras parcial ou completo do produto (opcional).</param>
+            <param name="skip">Número de itens a serem ignorados na paginação (padrão: 0).</param>
+            <param name="take">Número de itens a serem retornados na paginação (padrão: 10).</param>
+            <returns>Uma lista de produtos e o número total de itens.</returns>
+            <response code="200">Retorna a lista de produtos e o número total de itens.</response>
+            <response code="500">Se ocorrer um erro no servidor.</response>
+        </member>
+        <member name="M:FakeStoreAPI.Controllers.ProdutoController.AdicionarProduto(FakeStoreAPI.Data.DTOs.CreateProdutoDto)">
+            <summary>
+            Adiciona um novo produto ao sistema.
+            </summary>
+            <remarks>
+            Este endpoint permite a adição de um novo produto ao sistema. O produto deve ser fornecido no corpo da requisição.
+            </remarks>
+            <param name="produtoDto">Objeto contendo as informações do produto a ser adicionado.</param>
+            <returns>Retorna um status code indicando o resultado da operação.</returns>
+            <response code="204">Produto adicionado com sucesso, mas sem conteúdo retornado.</response>
+            <response code="400">Se os dados fornecidos são inválidos.</response>
+            <response code="500">Se ocorrer um erro no servidor.</response>
+        </member>
+        <member name="M:FakeStoreAPI.Controllers.ProdutoController.EditarProduto(System.Guid,FakeStoreAPI.Data.DTOs.UpdateProdutoDto)">
+            <summary>
+            Edita um produto existente no sistema.
+            </summary>
+            <remarks>
+            Este endpoint permite a edição das informações de um produto existente. O produto é identificado pelo ID fornecido na URL.
+            </remarks>
+            <param name="id">Identificador único do produto a ser editado.</param>
+            <param name="produtoDto">Objeto contendo as novas informações do produto.</param>
+            <returns>Retorna um status code indicando o resultado da operação.</returns>
+            <response code="204">Produto editado com sucesso, mas sem conteúdo retornado.</response>
+            <response code="400">Se os dados fornecidos são inválidos.</response>
+            <response code="404">Se o produto com o ID fornecido não for encontrado.</response>
+            <response code="500">Se ocorrer um erro no servidor.</response>
+        </member>
+        <member name="M:FakeStoreAPI.Controllers.ProdutoController.ExcluirProduto(System.Guid)">
+            <summary>
+            Exclui um produto existente do sistema.
+            </summary>
+            <remarks>
+            Este endpoint permite a exclusão de um produto identificado pelo ID fornecido na URL.
+            </remarks>
+            <param name="id">Identificador único do produto a ser excluído.</param>
+            <returns>Retorna um status code indicando o resultado da operação.</returns>
+            <response code="204">Produto excluído com sucesso, mas sem conteúdo retornado.</response>
+            <response code="400">Se os dados fornecidos são inválidos.</response>
+            <response code="404">Se o produto com o ID fornecido não for encontrado.</response>
+            <response code="500">Se ocorrer um erro no servidor.</response>
+        </member>
+    </members>
+</doc>

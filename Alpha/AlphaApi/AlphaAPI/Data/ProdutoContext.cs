@@ -9,6 +9,13 @@ public class ProdutoContext : DbContext
     {
             
     }
+    
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Produto>()
+            .Property(p => p.Price)
+            .HasColumnType("decimal(18,2)");
+    }
 
     public DbSet<Produto> Produtos { get; set; }
 }

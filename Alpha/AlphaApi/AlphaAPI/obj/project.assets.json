@@ -2655,11 +2655,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/mihael/Documents/TesteSys3/Teste-Sys3/Alpha/AlphaApi/AlphaAPI/AlphaAPI.csproj",
+      "projectUniqueName": "/Users/mihael/Documents/TesteSys3/TesteSys3/Alpha/AlphaApi/AlphaAPI/AlphaAPI.csproj",
       "projectName": "AlphaAPI",
-      "projectPath": "/Users/mihael/Documents/TesteSys3/Teste-Sys3/Alpha/AlphaApi/AlphaAPI/AlphaAPI.csproj",
+      "projectPath": "/Users/mihael/Documents/TesteSys3/TesteSys3/Alpha/AlphaApi/AlphaAPI/AlphaAPI.csproj",
       "packagesPath": "/Users/mihael/.nuget/packages/",
-      "outputPath": "/Users/mihael/Documents/TesteSys3/Teste-Sys3/Alpha/AlphaApi/AlphaAPI/obj/",
+      "outputPath": "/Users/mihael/Documents/TesteSys3/TesteSys3/Alpha/AlphaApi/AlphaAPI/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/mihael/.nuget/NuGet/NuGet.Config"

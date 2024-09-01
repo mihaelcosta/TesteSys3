@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LLbls/yKHLk=",
+  "dgSpecHash": "H9Qb7o5IQZU=",
   "success": true,
-  "projectFilePath": "/Users/mihael/Documents/TesteSys3/Teste-Sys3/Alpha/AlphaApi/AlphaAPI/AlphaAPI.csproj",
+  "projectFilePath": "/Users/mihael/Documents/TesteSys3/TesteSys3/Alpha/AlphaApi/AlphaAPI/AlphaAPI.csproj",
   "expectedPackageFiles": [
     "/Users/mihael/.nuget/packages/automapper/12.0.0/automapper.12.0.0.nupkg.sha512",
     "/Users/mihael/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.0/automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",

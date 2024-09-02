@@ -35,7 +35,7 @@ Siga os passos abaixo para configurar e rodar a aplicação:
 
 3. **Excute os comandos para instalar o .NET e SDK no projeto**
    
-   No terminal, execute os comando `docker pull mcr.microsoft.com/dotnet/sdk:6.0` e `docker pull mcr.microsoft.com/dotnet/aspnet:6.0` para realizar a instalação do .NET e dp SDK.
+   No terminal, execute os comando `docker pull mcr.microsoft.com/dotnet/sdk:6.0` e `docker pull mcr.microsoft.com/dotnet/aspnet:6.0` para realizar a instalação do .NET e do SDK.
     
 
 4. **Execute o Docker Compose:**

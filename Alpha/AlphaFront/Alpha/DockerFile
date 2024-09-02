@@ -1,3 +1,4 @@
+# Use a imagem base Node.js LTS com Alpine
 FROM node:lts-alpine
 
 # Define o ambiente como desenvolvimento
@@ -7,7 +8,7 @@ ENV NODE_ENV=development
 WORKDIR /usr/src/app
 
 # Copia os arquivos de configuração do npm
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+COPY package.json package-lock.json* npm-shrinkwrap.json* ./
 
 # Instala todas as dependências, incluindo as de desenvolvimento
 RUN npm install --silent
@@ -24,4 +25,3 @@ USER node
 
 # Comando para iniciar o Vite no modo de desenvolvimento
 CMD ["npm", "run", "dev"]
-

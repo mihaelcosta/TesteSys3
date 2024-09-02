@@ -12,6 +12,12 @@ main {
   background-color: #F9F7FF;
 }
 
+@media (prefers-color-scheme: dark) {
+  main {
+    background-color: transparent;
+  }
+}
+
 .btn-linx-color{
   background-image: linear-gradient(to right,#f0462d 0%,#ffb200 100%) !important;
   border: #f0462d !important;

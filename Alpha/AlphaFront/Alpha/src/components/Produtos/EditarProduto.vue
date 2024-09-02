@@ -1,18 +1,19 @@
 <template>
   <div>
+    <Toast />
     <Dialog v-model:visible="visible" modal header="Novo Produto" :style="{ width: '40rem', padding: '1em' }">
       <div class="container-form">
         <FloatLabel :style="{ width: '100%' }">
           <label for="nomeProdutoInsercao">Nome</label>
-          <InputText @input="this.validarCampos" v-model="produto.title" fluid id="nomeProdutoInsercao" autocomplete="off" />
+          <InputText v-model="produto.title" fluid id="nomeProdutoInsercao" autocomplete="off" />
         </FloatLabel>
         <FloatLabel>
           <label for="precoInsercao">Preço</label>
-          <InputNumber @input="this.validarCampos" v-model="produto.price" inputId="precoInsercao" mode="currency" currency="BRL" locale="pt-BR" fluid showButtons :min="0" />
+          <InputNumber v-model="produto.price" inputId="precoInsercao" mode="currency" currency="BRL" locale="pt-BR" fluid showButtons :min="0" />
         </FloatLabel>
         <FloatLabel>
           <label for="codigoBarrasInsercao">Código de Barras</label>
-          <InputText @input="thi.validarCampos" v-model="produto.description" id="codigoBarrasInsercao" autocomplete="off" fluid />
+          <InputText v-model="produto.description" id="codigoBarrasInsercao" autocomplete="off" fluid />
         </FloatLabel>
         <label for="uploadInsercao">Imagem</label>
         <FloatLabel>
@@ -37,7 +38,8 @@ export default {
     InputText,
     FloatLabel,
     InputNumber,
-    FileUpload
+    FileUpload,
+    Toast
   },
   data() {
     return {
@@ -52,7 +54,7 @@ export default {
       this.produto = data
       this.visible = true
       this.loading = false
-      this.src = data.imagem
+      this.src = data.image
     },
     async editarProduto() {
       this.loading = true;
@@ -63,10 +65,11 @@ export default {
         // Após a atualização bem-sucedida
         this.visible = false;
         this.$emit('salvo');
+        this.$toast.add({ severity: 'success', summary: 'Produto Alterado!', detail: 'Produto foi alterado com sucesso.', life: 3150 });
       } catch (error) {
         // Em caso de erro
         console.error('Erro ao editar produto:', error);
-        // Aqui você pode adicionar lógica para lidar com o erro, se necessário
+        this.$toast.add({ severity: 'error', summary: 'Erro!', detail: 'Erro ao editar produto.', life: 3150 });
       } finally {
         this.loading = false;
       }
@@ -93,31 +96,6 @@ export default {
       reader2.readAsDataURL(file2);
 
     }
-  },
-  validarCampos() {
-    const regexCodigo = /^\d{13}$/;
-    this.novoProduto.Description = regex.test(this.novoProduto.Description.replace(/\D/g, ''));
-
-    const regexTitle = /^[a-zA-Z0-9 ]+$/;
-    this.novoProduto.Title = regex.test(this.novoProduto.Title.replace(/\D/g, ''));
-
-    const precoRegex = /^\d+(\.\d{1,2})?$/;
-
-
-    this.novoProduto.Price = precoRegex.test(this.novoProduto.Price) && parseFloat(this.novoProduto.Price) > 0;
-
-
-    const map = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#039;'
-    };
-
-    this.novoProduto.Title.replace(/[&<>"']/g, function (m) { return map[m]; });
-    this.novoProduto.Description.replace(/[&<>"']/g, function (m) { return map[m]; });
-    this.novoProduto.Price.replace(/[&<>"']/g, function (m) { return map[m]; });
   }
 }
 
@@ -129,6 +107,7 @@ import InputNumber from 'primevue/inputnumber'
 import FloatLabel from 'primevue/floatlabel';
 import FileUpload from 'primevue/fileupload';
 import { atualizarProdutoApi } from '../../services/productService.js'
+import Toast from 'primevue/toast'
 </script>
 
 <style scoped>

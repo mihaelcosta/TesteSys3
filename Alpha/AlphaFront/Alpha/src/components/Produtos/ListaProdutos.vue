@@ -1,4 +1,5 @@
 <template>
+  <Toast />
   <DataTable :value="products" dataKey="id" scrollable scrollHeight="100%" tableStyle="min-width: 50rem; height: 100%">
     <template #empty> Nenhum produto encontrado! </template>
     <template #loading> Carregando os Dados. </template>
@@ -52,7 +53,8 @@ export default {
     InputText,
     ConfirmPopup,
     EditarProduto,
-    Paginator
+    Paginator,
+    Toast
   },
   data() {
     return {
@@ -69,12 +71,12 @@ export default {
     },
     async realizaFiltro(filtroNome, filtroCodigo) {
       try {
-        const data = await realizaFiltroApi(this.filtroNome, this.filtroCodigo, this.rows);
+        const data = await realizaFiltroApi(filtroNome, filtroCodigo, this.rows);
         this.products = data.produtos;
         this.total = data.totalItems;
       } catch (error) {
         console.error('Erro ao aplicar filtro:', error);
-        // Aqui você pode adicionar lógica para mostrar mensagens de erro ao usuário
+        this.$toast.add({ severity: 'error', summary: 'Erro!', detail: 'Erro ao aplicar filtro. Tente novamente.', life: 3150 });
       }
     },
     deletaProdutoPopup(event, data) {
@@ -100,13 +102,13 @@ export default {
       try {
         const sucesso = await excluirProdutoApi(id);
         if (sucesso) {
-          this.products = this.products.filter(produto => produto.id !== id);
-          alert('Produto excluído com sucesso!');
+          this.atualizar()
+          this.$toast.add({ severity: 'success', summary: 'Excluído!', detail: 'Produto excluído com sucesso!', life: 3150 });
         } else {
-          alert('Erro ao excluir o produto. Tente novamente.');
+          this.$toast.add({ severity: 'error', summary: 'Erro!', detail: 'Erro ao excluir o produto. Tente novamente.', life: 3150 });
         }
       } catch (error) {
-        alert('Ocorreu um erro ao tentar excluir o produto.');
+        this.$toast.add({ severity: 'error', summary: 'Erro!', detail: 'Ocorreu um erro ao tentar excluir o produto.', life: 3150 });
       }
     },
 
@@ -123,6 +125,7 @@ export default {
         this.total = data.totalItems;
       } catch (error) {
         console.error('Erro ao obter dados:', error);
+        this.$toast.add({ severity: 'error', summary: 'Erro!', detail: 'Erro ao coletar dados!', life: 3150 });
         // Aqui você pode adicionar lógica para mostrar mensagens de erro ao usuário
       }
     },
@@ -152,6 +155,7 @@ import ConfirmPopup from 'primevue/confirmpopup';
 import EditarProduto from '../Produtos/EditarProduto.vue'
 import Paginator from 'primevue/paginator'
 import { getDadosApi, realizaFiltroApi, excluirProdutoApi } from '../../services/productService.js'
+import Toast from 'primevue/toast'
 </script>
 
 <style scoped>

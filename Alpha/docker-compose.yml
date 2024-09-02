@@ -1,0 +1,47 @@
+networks:
+  dockerapi-dev:
+    driver: bridge
+
+services:
+  api:
+    build:
+      context: ./AlphaAPI/AlphaApi
+      dockerfile: Dockerfile
+    container_name: AlphaApi
+    ports:
+      - "8080:80"
+      - "8081:8081"
+    depends_on:
+      - sql_image
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ProdutoConnection=Server=sql_image;Port=1433;Database=Alpha;User Id=sa;Password=TesteSys3#; # Ajuste conforme necessário
+    networks:
+      - dockerapi-dev
+    restart: "always"
+
+  sql_image:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: AlphaDb
+    ports:
+      - "1433:1433"
+    environment:
+      - SA_PASSWORD=TesteSys3#
+      - ACCEPT_EULA=Y
+    volumes:
+      - db_data:/var/opt/mssql
+    networks:
+      - dockerapi-dev
+
+  frontend:
+    build:
+      context: ./AlphaFront/Alpha
+      dockerfile: Dockerfile
+    container_name: front_image
+    ports:
+      - "5173:5173"
+    networks:
+      - dockerapi-dev
+
+volumes:
+  db_data:

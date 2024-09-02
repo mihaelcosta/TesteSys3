@@ -33,11 +33,16 @@ Siga os passos abaixo para configurar e rodar a aplicação:
 
    Navegue até a pasta do projeto usando o comando `cd` seguido do nome da pasta.
 
-3. **Execute o Docker Compose:**
+3. **Excute os comandos para instalar o .NET e SDK no projeto**
+   
+   No terminal, execute os comando `docker pull mcr.microsoft.com/dotnet/sdk:6.0` e `docker pull mcr.microsoft.com/dotnet/aspnet:6.0` para realizar a instalação do .NET e dp SDK.
+    
+
+4. **Execute o Docker Compose:**
 
    No terminal, execute o comando `docker-compose up -d` para criar e iniciar os containers necessários.
 
-4. **Acesse as URLs:**
+5. **Acesse as URLs:**
 
    Após a execução do Docker Compose, acesse as URLs correspondentes às portas configuradas no arquivo `docker-compose.yml` para interagir com a aplicação.
 
